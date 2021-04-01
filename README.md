@@ -2,8 +2,9 @@
 * Convert chemical geometries to other formats on Windows.
 
 ## 1 Requirements
-* Windows version `busybox64.exe`(<http://frippery.org/busybox/>).
-* Put `busybox64.exe` and these files in the same directory and add the directory to `PATH` of Windows.
+* Get Windows version `busybox64.exe`(<http://frippery.org/busybox/>).
+* Put `busybox64.exe` and these files in the same directory.
+* Double click `add_pwd.vbs` to add current directory to `PATH` of Windows.
 
 ### 1.2 Additional for pw2xsf
 * Put `ibrav2cell.exe`, `libgfortran-4.dll`, `msmpi.dll`，`libwinpthread-1.dll` and `libquadmath-0.dll` (from **Quantum VITAS** <https://www.quantumvitas.org/>) in the same directory.
@@ -18,6 +19,3 @@
 
 ### 2.3 Gaussian gjf to xyz format 
 * `gjf2xyz  g09.gjf`, then you will get `g09.xyz`.
-
-### 2.4 Add current directory to `PATH`
-* Double click `add_pwd.vbs`.
