@@ -10,7 +10,7 @@
 
 ## 2 Usage
 ### 2.1 Pwscf input/output to xsf format
-* `busybox64.exe pw2xsf pwscf.in/pwscf.out out.xsf`, then you will get `out.xsf` from input/output file of Pwscf in the case `ibrav=0` and `ibrav>0`.
+* `busybox64.exe pw2xsf pwscf.pw/pwscf.out out.xsf`, then you will get `out.xsf` from input/output file of Pwscf in the case `ibrav=0` and `ibrav>0`.
 * OR you can use [openbabel](https://github.com/openbabel/openbabel) to covert it (like `obabel.exe -ipwscf  pwscf.in -ocif -Oout.cif`) only in the case `ibrav=0`. 
 
 ### 2.2 POSCAR to pwxsf input 
