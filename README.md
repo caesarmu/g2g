@@ -18,3 +18,6 @@
 
 ### 2.3 Gaussian gjf to xyz format 
 * `gjf2xyz  g09.gjf`, then you will get `g09.xyz`.
+
+### 2.4 Add current directory to `PATH`
+* Double click `add_pwd.vbs`.
