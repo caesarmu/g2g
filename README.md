@@ -3,10 +3,10 @@
 
 ## 1 Requirements
 * Windows version `busybox64.exe`(<http://frippery.org/busybox/>).
-* Add the directories containing `busybox64.exe` and these files to `PATH` of Windows.
+* Put `busybox64.exe` and these files in the same directory and add the directory to `PATH` of Windows.
 
 ### 1.2 Additional for pw2xsf
-* `ibrav2cell.exe` (and `libgfortran-4.dll`, `msmpi.dll`，`libwinpthread-1.dll` and `libquadmath-0.dll`) in **Quantum VITAS** from <https://www.quantumvitas.org/>.
+* Put `ibrav2cell.exe`, `libgfortran-4.dll`, `msmpi.dll`，`libwinpthread-1.dll` and `libquadmath-0.dll` (from **Quantum VITAS** <https://www.quantumvitas.org/>) in the same directory.
 
 ## 2 Usage
 ### 2.1 Pwscf input/output to xsf format
