@@ -3,7 +3,7 @@
 
 ## 1 Requirements
 * Windows version `busybox64.exe`(<http://frippery.org/busybox/>).
-* Add the directory containing `busybox64.exe` and these files to `PATH` of Windows.
+* Add the directories containing `busybox64.exe` and these files to `PATH` of Windows.
 
 ### 1.2 Additional for pw2xsf
 * `ibrav2cell.exe` (and `libgfortran-4.dll`, `msmpi.dll`，`libwinpthread-1.dll` and `libquadmath-0.dll`) in **Quantum VITAS** from <https://www.quantumvitas.org/>.
