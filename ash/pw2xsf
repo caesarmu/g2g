@@ -16,9 +16,9 @@ echo "Example: pw2xsf scf.in/scf.out b.xsf"
 fi
 [[ -z "$qeout" || ! -s  "$qeout" ]] && echo "QE outfile not exist!" && exit 1
 
-ibrav=$(awk '/^ *ibrav *=/{printf "%d",$NF}' $qeout)
+ibrav=$(awk '/^ *ibrav *=/{ibrav=$NF;}END{printf "%d",ibrav+0}' $qeout)
 havelatt=$(awk 'BEGIN{IGNORECASE=1;}/^ *CELL_PARAMETERS/{print $0}' $qeout)
-if [[ "$ibrav" -gt 0 && -z "$havelatt" ]] ; then 
+if [[  "$ibrav" -gt 0 && -z "$havelatt" ]] ; then 
 qedir=$(dirname $qeout)
 shelldir=$(dirname $0)
 export PATH=$PATH:${shelldir}
