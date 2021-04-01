@@ -31,7 +31,7 @@ IF "%ingeoext%%outgeoext%" == ".pdb.pw" (obabel.exe %ingeo% -Og2g4wtmp.vasp && b
 IF "%ingeoext%%outgeo%" == ".pdb" (obabel.exe %ingeo% -Og2g4wtmp.vasp && busybox64.exe sh -c "cd %cd:\=/%; v2pw g2g4wtmp.vasp %ingeobase%.pw" && goto END )
 
 :END
-DEL /Q g2g4wtmp.*
+DEL /Q g2g4wtmp.* 2>nul
 REM EXIT 
 
 
