@@ -12,5 +12,6 @@
 * `g2g4w POSCAR/CONTCAR/a.vasp [b.pw]`: Convert geometry in vasp format to pwscf input format. 
 * `g2g4w a.cif [b.pw]`: Convert geometry in cif format to pwscf input format.
 * `g2g4w a.xsf [b.pw]`: Convert geometry in xsf format to pwscf input format.
+* `g2g4w a.pdb [b.pw]`: Convert geometry in pdb format to pwscf input format.
 * `g2g4w a.gif [a.xyz]`: Convert geometry in gaussian gjf format to xyz format.
 
