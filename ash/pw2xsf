@@ -18,7 +18,7 @@ fi
 
 ibrav=$(awk '/^ *ibrav *=/{printf "%d",$NF}' $qeout)
 havelatt=$(awk 'BEGIN{IGNORECASE=1;}/^ *CELL_PARAMETERS/{print $0}' $qeout)
-if [[ "$ibrav" -gt 0 && -z "$havelatt"]] ; then 
+if [[ "$ibrav" -gt 0 && -z "$havelatt" ]] ; then 
 qedir=$(dirname $qeout)
 shelldir=$(dirname $0)
 export PATH=$PATH:${shelldir}
