@@ -30,6 +30,7 @@ IF "%ingeoext%%outgeo%" == ".xsf" (obabel.exe %ingeo% -Og2g4wtmp.vasp && busybox
 IF "%ingeoext%%outgeoext%" == ".pdb.pw" (obabel.exe %ingeo% -Og2g4wtmp.vasp && busybox64.exe sh -c "cd %cd:\=/%; v2pw g2g4wtmp.vasp %outgeo%" && goto END )
 IF "%ingeoext%%outgeo%" == ".pdb" (obabel.exe %ingeo% -Og2g4wtmp.vasp && busybox64.exe sh -c "cd %cd:\=/%; v2pw g2g4wtmp.vasp %ingeobase%.pw" && goto END )
 IF "%outgeoext%" == ".pw" (obabel.exe %ingeo% -Og2g4wtmp.vasp && busybox64.exe sh -c "cd %cd:\=/%; v2pw g2g4wtmp.vasp %outgeo%" && goto END )
+IF "%outgeoext%" == ".xsf" (obabel.exe %ingeo% -Og2g4wtmp.vasp && busybox64.exe sh -c "cd %cd:\=/%; v2pw g2g4wtmp.vasp g2g4wtmp.pw && pw2xsf g2g4wtmp.pw %outgeo%" && goto END )
 IF NOT "x%outgeo%" == "x" (obabel.exe %ingeo% -O%outgeo% )
 
 :END
