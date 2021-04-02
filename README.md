@@ -11,7 +11,9 @@
 
 ## 3 Usage
 * `g2g4w a.in/a.pw/a.out [b.xsf]`: Convert pwscf input/output to xsf format, it support `ibrav=0` and `ibrav>0`.
+* `g2g4w a.in/a.pw/a.out b.cif`: Convert pwscf input/output to cif format, it support `ibrav=0` and `ibrav>0`.
 * `g2g4w POSCAR/CONTCAR/a.vasp [b.pw]`: Convert geometry in vasp format to pwscf input format. 
+* `g2g4w aaa.yyy POSCAR/CONTCAR/a.vasp`: Convert geometry to vasp format with openbabel.
 * `g2g4w a.cif [b.pw]`: Convert geometry in cif format to pwscf input format.
 * `g2g4w a.xsf [b.pw]`: Convert geometry in xsf format to pwscf input format.
 * `g2g4w a.pdb [b.pw]`: Convert geometry in xsf format to pwscf input format.
