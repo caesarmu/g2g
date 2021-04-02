@@ -4,7 +4,7 @@
 ## 1 Why to creat this project 
 * [openbabel](https://github.com/openbabel/openbabel) does not support `ibrav>0` for converting **pwscf** format. 
 * [openbabel](https://github.com/openbabel/openbabel) does not support output in **pwscf** format, which is needed by [QuantumVITAS](https://www.quantumvitas.org/ "QuantumVITAS"), a Windows GUI for [Quantum Espresso](https://www.quantum-espresso.org/ "Quantum Espresso"). 
-* [openbabel](https://github.com/openbabel/openbabel) does not support output in **xsf** output. 
+* [openbabel](https://github.com/openbabel/openbabel) does not support output in **xsf** format. 
 
 ## 2 Requirements
 * Install [openbabel](https://github.com/openbabel/openbabel).
