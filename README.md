@@ -17,6 +17,6 @@
 * `g2g4w a.pdb [b.pw]`: Convert geometry in xsf format to pwscf input format.
 * `g2g4w a.gif [a.xyz]`: Convert geometry in gaussian gjf format to xyz format.
 * `g2g4w xxx.yyy a.pw`: Convert geometry to pwscf input format.
-* * `g2g4w xxx.yyy a.xsf`: Convert geometry to xsf format.
+* `g2g4w xxx.yyy a.xsf`: Convert geometry to xsf format.
 * `g2g4w aaa.yyy bbb.zzz`: Convert geometry with openbabel.
 
