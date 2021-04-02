@@ -1,5 +1,4 @@
-# geo2geo4win (g2g4w)
-* Convert chemical geometries to other formats on Windows.
+# Chemical format converter based on Openbabel for Windows (g2g4w)
 
 ## 1 Why to creat this project 
 * [openbabel](https://github.com/openbabel/openbabel) does not support `ibrav>0` for converting **pwscf** format. 
