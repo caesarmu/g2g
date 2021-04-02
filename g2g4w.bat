@@ -17,7 +17,7 @@ IF "%ingeo%0%outgeoext%" == "CONTCAR0.pw" (busybox64.exe sh -c "cd %cd:\=/%; v2p
 IF "%ingeoext%0%outgeo%" == ".vasp0" (busybox64.exe sh -c "cd %cd:\=/%; v2pw %ingeo% %ingeobase%.pw"  && goto END )
 IF "%ingeoext%0%outgeoext%" == ".out0.xsf" (busybox64.exe sh -c "cd %cd:\=/%; pw2xsf %ingeo% %outgeo%"  && goto END )
 IF "%ingeoext%0%outgeoext%" == ".out0.cif" (busybox64.exe sh -c "cd %cd:\=/%; pw2xsf %ingeo% g2g4wtmp.xsf && obabel.exe g2g4wtmp.xsf -O%outgeo%"  && goto END )
-IF "%ingeoext%0%outgeoext%" == ".out0.pw" (busybox64.exe sh -c "cd %cd:\=/%; pw2xsf %ingeo% g2g4wtmp.xsf && obabel.exe g2g4wtmp.xsf -ovasp -Og2g4wtmp.vasp && v2pw g2g4wtmp.vasp -O%outgeo%"  && goto END )
+IF "%ingeoext%0%outgeoext%" == ".out0.pw" (busybox64.exe sh -c "cd %cd:\=/%; pw2xsf %ingeo% g2g4wtmp.xsf && obabel.exe g2g4wtmp.xsf -ovasp -Og2g4wtmp.vasp && v2pw g2g4wtmp.vasp %outgeo%"  && goto END )
 IF "%ingeoext%0%outgeo%" == ".out0" (busybox64.exe sh -c "cd %cd:\=/%; pw2xsf %ingeo% %ingeobase%.xsf" && goto END )
 IF "%ingeoext%0%outgeoext%" == ".pw0.xsf" (busybox64.exe sh -c "cd %cd:\=/%; pw2xsf %ingeo% %outgeo%"  && goto END )
 IF "%ingeoext%0%outgeoext%" == ".pw0.cif" (busybox64.exe sh -c "cd %cd:\=/%; pw2xsf %ingeo% g2g4wtmp.xsf && obabel.exe g2g4wtmp.xsf -O%outgeo%"  && goto END )
