@@ -1,4 +1,4 @@
-# Chemical format converter based on Openbabel for Windows (g2g4w)
+# Chemical format converter based on Openbabel for Windows (g2g)
 
 ## 1 Why to creat this project 
 * [openbabel](https://github.com/openbabel/openbabel) does not support `ibrav>0` for converting **pwscf** format. 
@@ -11,19 +11,20 @@
 
 ## 3 Usage
 ### 3.1 Quantum Espresso Related 
-* `g2g4w a.in/a.pw/a.out [b.xsf]`: Convert pwscf input/output to xsf format, it support `ibrav=0` and `ibrav>0`.
-* `g2g4w a.in/a.pw/a.out b.cif`: Convert pwscf input/output to cif format, it support `ibrav=0` and `ibrav>0`.
-* `g2g4w a.out b.pw`: Convert pwscf output to input format.
-* `g2g4w a.out b.vasp`: Convert pwscf output to vasp format.
-* `g2g4w a.out trace.xyz 5`: Convert pwscf output to trace file in xyz format, 5 is sample period.
-* `g2g4w POSCAR/CONTCAR/a.vasp [b.pw]`: Convert geometry in vasp format to pwscf input format. 
-* `g2g4w a.cif [b.pw]`: Convert geometry in cif format to pwscf input format.
-* `g2g4w a.xsf [b.pw]`: Convert geometry in xsf format to pwscf input format.
-* `g2g4w a.pdb [b.pw]`: Convert geometry in xsf format to pwscf input format.
-* `g2g4w xxx.yyy a.pw`: Convert geometry to pwscf input format.
+* `g2g a.in/a.pw/a.out [b.xsf]`: Convert pwscf input/output to xsf format, it support `ibrav=0` and `ibrav>0`.
+* `g2g a.in/a.pw/a.out b.cif`: Convert pwscf input/output to cif format, it support `ibrav=0` and `ibrav>0`.
+* `g2g a.out b.pw`: Convert pwscf output to input format.
+* `g2g a.out b.vasp`: Convert pwscf output to vasp format.
+* `g2g a.out trace.xyz 5`:Convert pwscf output to trace file in xyz format, 5 is sample period.
+* `g2g POSCAR/CONTCAR/a.vasp [b.pw]`: Convert geometry in vasp format to pwscf input format. 
+* `g2g a.cif [b.pw]`: Convert geometry in cif format to pwscf input format.
+* `g2g a.xsf [b.pw]`: Convert geometry in xsf format to pwscf input format.
+* `g2g a.pdb [b.pw]`: Convert geometry in xsf format to pwscf input format.
+* `g2g xxx.yyy a.pw`: Convert geometry to pwscf input format.
 
 ### 3.2 Other
-* `g2g4w aaa.yyy POSCAR/CONTCAR/a.vasp`: Convert geometry to vasp format with openbabel.
-* `g2g4w a.gif [a.xyz]`: Convert geometry in gaussian gjf format to xyz format.
-* `g2g4w xxx.yyy a.xsf`: Convert geometry to xsf format.
-* `g2g4w aaa.yyy bbb.zzz`: Convert geometry with openbabel.
+* `g2g aa.xsf b.xsf id`: Extract id-th xsf file from axsf file.
+* `g2g aaa.yyy POSCAR/CONTCAR/a.vasp`: Convert geometry to vasp format with openbabel.
+* `g2g a.gif [a.xyz]`: Convert geometry in gaussian gjf format to xyz format.
+* `g2g xxx.yyy a.xsf`: Convert geometry to xsf format.
+* `g2g aaa.yyy bbb.zzz`: Convert geometry with openbabel.
