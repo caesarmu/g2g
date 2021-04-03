@@ -15,7 +15,7 @@
 * `g2g4w a.in/a.pw/a.out b.cif`: Convert pwscf input/output to cif format, it support `ibrav=0` and `ibrav>0`.
 * `g2g4w a.out b.pw`: Convert pwscf output to input format.
 * `g2g4w a.out b.vasp`: Convert pwscf output to vasp format.
-* `g2g4w a.out trace.xyz`: Convert pwscf output to trace file in xyz format.
+* `g2g4w a.out trace.xyz 5`: Convert pwscf output to trace file in xyz format, 5 is sample period.
 * `g2g4w POSCAR/CONTCAR/a.vasp [b.pw]`: Convert geometry in vasp format to pwscf input format. 
 * `g2g4w a.cif [b.pw]`: Convert geometry in cif format to pwscf input format.
 * `g2g4w a.xsf [b.pw]`: Convert geometry in xsf format to pwscf input format.
