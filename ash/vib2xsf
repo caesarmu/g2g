@@ -1,0 +1,58 @@
+#!/bin/sh
+if [[ "$#" -ge 1 ]] ; then 
+	inaxsf=$1
+	vibid=$2
+	vibscale=$3
+else
+cat >/dev/tty<<EOF
+Example: 
+Move: vib2xsf a.axsf vibid/0 scale
+Split: vib2xsf vibid 0
+EOF
+  exit 1 
+fi
+
+[[ ! -s "$inaxsf" ]] && echo "$inaxsf not exist!" && exit 2
+[[ -z "$vibscale"  ]] && vibscale=0
+if [[ -z "$vibid" || "$vibid" == 0  ]] ; then 
+	maxifreq=$(grep "^#.*f/i.*THz.*cm-1" $inaxsf |sort -k 4 |tail -1)
+	vibid=$(grep -A1 "$maxifreq" $inaxsf|awk '/PRIMCOORD/{print $NF}')
+    [[ -z "$vibid" ]] && echo "No freq info!" && exit 2
+	[[  -z "$vibscale" ]] && vibscale=10
+fi
+[[ -z "$vibscale"  ]] && vibscale=0
+
+outxsf=qe2vib${vibid}x${vibscale}.xsf
+awk -v scale="$vibscale" '
+/^ *CRYSTAL/{print $0;}
+/^ *PRIMVEC/{
+  print $0;
+  for(i=1;i<=3;i++){
+	  getline;
+	  print $0;
+  }
+}
+/^ *PRIMCOORD *'$vibid'$/{
+  print "PRIMCOORD"
+  getline;
+  natom=$1;
+  print $0;
+  for(i=1;i<=natom;i++){
+	getline;
+	if (scale == 0){
+       print $0;
+	}else{
+       for(j=1;j<=3;j++){
+          car[j]=$(j+1)+$(j+4)*scale;
+	   }
+	   printf "%5s%15.5f%15.5f%15.5f\n",$1,car[1],car[2],car[3];
+    }
+  }
+}' $inaxsf >${outxsf}
+echo "$outxsf generated!"
+exit 0	
+
+
+
+
+

@@ -58,7 +58,6 @@ for(i=1;i<=nty;i++){
 
 printf "&SYSTEM\n" >outpw;
 printf "nat=%d\n",natom >outpw;
-printf "ntyp=%d\n",nty >outpw;
 printf "ibrav= 0\n" >outpw;
 printf "/\n" >outpw;
 printf "\n" >outpw;
