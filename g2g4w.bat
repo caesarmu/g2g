@@ -8,6 +8,7 @@ SET ingeobase=%~n1
 SET outgeo=%2
 SET outgeoext=%~x2
 SET outgeobase=%~n2
+SET taskpara=%3
 
 IF "%ingeo%0%outgeoext%" == ".gjf0.xyz" (busybox64.exe sh -c "cd %cd:\=/%; gjf2xyz %ingeo% %outgeo%"  && goto END )
 IF "%ingeo%0%outgeo%" == ".gjf0" (busybox64.exe sh -c "cd %cd:\=/%; gjf2xyz %ingeo% %ingeobase%.xyz"  && goto END )
@@ -19,6 +20,7 @@ IF "%ingeoext%0%outgeoext%" == ".out0.xsf" (busybox64.exe sh -c "cd %cd:\=/%; pw
 IF "%ingeoext%0%outgeoext%" == ".out0.cif" (busybox64.exe sh -c "cd %cd:\=/%; pw2xsf %ingeo% g2g4wtmp.xsf && obabel.exe g2g4wtmp.xsf -O%outgeo%"  && goto END )
 IF "%ingeoext%0%outgeoext%" == ".out0.pw" (busybox64.exe sh -c "cd %cd:\=/%; pw2xsf %ingeo% g2g4wtmp.xsf && obabel.exe g2g4wtmp.xsf -ovasp -Og2g4wtmp.vasp && v2pw g2g4wtmp.vasp %outgeo%"  && goto END )
 IF "%ingeoext%0%outgeoext%" == ".out0.vasp" (busybox64.exe sh -c "cd %cd:\=/%; pw2xsf %ingeo% g2g4wtmp.xsf && obabel.exe g2g4wtmp.xsf -ovasp %outgeo%"  && goto END )
+IF "%ingeoext%0%outgeoext%" == ".out0.xyz" (busybox64.exe sh -c "cd %cd:\=/%; pw2xyz %ingeo% %outgeo% %taskpara%"  && goto END )
 IF "%ingeoext%0%outgeo%" == ".out0" (busybox64.exe sh -c "cd %cd:\=/%; pw2xsf %ingeo% %ingeobase%.xsf" && goto END )
 IF "%ingeoext%0%outgeoext%" == ".pw0.xsf" (busybox64.exe sh -c "cd %cd:\=/%; pw2xsf %ingeo% %outgeo%"  && goto END )
 IF "%ingeoext%0%outgeoext%" == ".pw0.cif" (busybox64.exe sh -c "cd %cd:\=/%; pw2xsf %ingeo% g2g4wtmp.xsf && obabel.exe g2g4wtmp.xsf -O%outgeo%"  && goto END )
@@ -42,5 +44,3 @@ IF NOT "x%outgeo%" == "x" (obabel.exe %ingeo% -O%outgeo% )
 :END
 DEL /Q g2g4wtmp.* 2>nul
 REM EXIT 
-
-
