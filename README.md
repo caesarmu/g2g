@@ -23,7 +23,7 @@
 * `g2g xxx.yyy a.pw`: Convert geometry to pwscf input format.
 
 ### 3.2 Other
-* `g2g aa.xsf b.xsf id`: Extract id-th xsf file from axsf file.
+* `g2g aa.axsf b.xsf id [scale]`: Extract id-th xsf file from axsf file, and geometry may be modified by scale*frequency vector if the a.xsf is the frequency mode file from pwscf.
 * `g2g aaa.yyy POSCAR/CONTCAR/a.vasp`: Convert geometry to vasp format with openbabel.
 * `g2g a.gif [a.xyz]`: Convert geometry in gaussian gjf format to xyz format.
 * `g2g xxx.yyy a.xsf`: Convert geometry to xsf format.
