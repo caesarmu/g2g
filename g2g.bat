@@ -35,7 +35,7 @@ IF "%ingeoext%0%outgeoext%" == ".xsf0.pw" (obabel.exe %ingeo% -Og2gtmp.vasp && b
 IF "%ingeoext%0%outgeo%" == ".xsf0" (obabel.exe %ingeo% -Og2gtmp.vasp && busybox64.exe sh -c "cd %cd:\=/%; v2qe g2gtmp.vasp %ingeobase%.pw" && goto END )
 IF "%ingeoext%0%outgeoext%" == ".pdb0.pw" (obabel.exe %ingeo% -Og2gtmp.vasp && busybox64.exe sh -c "cd %cd:\=/%; v2qe g2gtmp.vasp %outgeo%" && goto END )
 IF "%ingeoext%0%outgeo%" == ".pdb0" (obabel.exe %ingeo% -Og2gtmp.vasp && busybox64.exe sh -c "cd %cd:\=/%; v2qe g2gtmp.vasp %ingeobase%.pw" && goto END )
-IF "%ingeoext%0%outgeoext%" == ".axsf0.xsf" (busybox64.exe sh -c "cd %cd:\=/%; vib2xsf %ingeo% %taskpara% %otherpara% && mv qe2vib%taskpara%x0.xsf %outgeo%" && goto END )
+IF "%ingeoext%0%outgeoext%" == ".axsf0.xsf" (busybox64.exe sh -c "cd %cd:\=/%; vib2xsf %ingeo% %taskpara% %otherpara% && mv qe2vib%taskpara%x*.xsf %outgeo%" && goto END )
 IF "%outgeoext%" == ".pw" (obabel.exe %ingeo% -Og2gtmp.vasp && busybox64.exe sh -c "cd %cd:\=/%; v2qe g2gtmp.vasp %outgeo%" && goto END )
 IF "%outgeoext%" == ".xsf" (obabel.exe %ingeo% -Og2gtmp.vasp && busybox64.exe sh -c "cd %cd:\=/%; v2qe g2gtmp.vasp g2gtmp.pw && qe2xsf g2gtmp.pw %outgeo%" && goto END )
 IF "%outgeo%" == "POSCAR" (obabel.exe %ingeo% -ovasp -O%outgeo% && goto END )
@@ -44,7 +44,7 @@ IF "%outgeo%" == ".vasp" (obabel.exe %ingeo% -ovasp -O%outgeo% && goto END )
 IF NOT "x%outgeo%" == "x" (obabel.exe %ingeo% -O%outgeo% )
 
 :END
-DEL /Q g2gtmp.* qe2vib*x0.xsf 2>nul
+DEL /Q g2gtmp.* qe2vib*x*.xsf 2>nul
 REM EXIT 
 
 
