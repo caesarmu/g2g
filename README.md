@@ -21,6 +21,8 @@
 * `g2g a.xsf [b.pw]`: Convert geometry in xsf format to pwscf input format.
 * `g2g a.pdb [b.pw]`: Convert geometry in xsf format to pwscf input format.
 * `g2g xxx.yyy a.pw`: Convert geometry to pwscf input format.
+* `g2g qepath %quantumvitashome%\qe6.4.1_win`: Add the directories of qe and mpi in QuantumVITAS to `PATH` of Windows and open a console.
+
 
 ### 3.2 Other
 * `g2g aa.axsf b.xsf id [scale]`: Extract id-th xsf file from axsf file, and geometry may be modified by scale*frequency vector if the a.xsf is the frequency mode file from pwscf.
