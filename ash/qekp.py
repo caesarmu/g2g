@@ -36,7 +36,7 @@ kpdata = seekpath.getpaths.get_path(inp, with_time_reversal=tr, recipe='hpkot', 
 
 primcell = Atoms(positions=kpdata['primitive_positions'],cell=kpdata['primitive_lattice'],pbc=[True,True,True])
 primcell.set_atomic_numbers(kpdata['primitive_types'])
-primcell.set_scaled_positions(kpdata['primitive_positions'])
+#primcell.set_scaled_positions(kpdata['primitive_positions'])
 kpath = kpdata['point_coords']
 if os.path.isfile(output):
     os.remove(output)
@@ -77,3 +77,4 @@ with open(output,'a') as outfile:
         outfile.write("%16.10f %16.10f %16.10f 1\n" % (hkp[0], hkp[1],hkp[2]))
     outfile.write("\n")
 outfile.close()
+#os.system("pause")
