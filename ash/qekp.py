@@ -18,20 +18,19 @@ else:
     inpos = sys.argv[1]
     ndiv = sys.argv[2]
  
-dirname,posname = os.path.split(inpos)
+ 
 if not os.path.isfile(inpos):
     sys.exit(1)   
-if dirname == "":
-    dirname = "."
 ndiv = int(ndiv)
 
 dirname,posname = os.path.split(inpos)
 posbase,posext = os.path.splitext(posname)
+outdir = "."
 bulk = read(inpos) 
 
 numbers = bulk.get_atomic_numbers()
 tr = True
-output = os.path.join(dirname,posbase+"_kpt.pw")
+output = os.path.join(outdir,posbase+"_kpt.pw")
 inp = (bulk.cell, bulk.get_scaled_positions(),numbers)
 kpdata = seekpath.getpaths.get_path(inp, with_time_reversal=tr, recipe='hpkot', threshold=1e-07, symprec=1e-05, angle_tolerance=-1.0)
 
