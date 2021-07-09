@@ -24,9 +24,30 @@
 * `g2g qepath %quantumvitashome%\qe6.4.1_win`: Add the directories of qe and mpi in QuantumVITAS to `PATH` of Windows and open a console.
 
 
-### 3.2 Other
+### 3.2 Other Toos
 * `g2g aa.axsf b.xsf id [scale]`: Extract id-th xsf file from axsf file, and geometry may be modified by scale*frequency vector if the a.xsf is the frequency mode file from pwscf.
+* `g2g aa.axsf b.xyz`: Convert axsf file with multi-frames to xyz format
 * `g2g aaa.yyy POSCAR/CONTCAR/a.vasp`: Convert geometry to vasp format with openbabel.
 * `g2g a.gif [a.xyz]`: Convert geometry in gaussian gjf format to xyz format.
 * `g2g xxx.yyy a.xsf`: Convert geometry to xsf format.
 * `g2g aaa.yyy bbb.zzz`: Convert geometry with openbabel.
+
+### 3.3 If Anaconda installed 
+* Install Anaconda3 to somewhere (e.g. default: `%USERPROFILE%\anaconda3`), and add the home of Anaconda (`%USERPROFILE%\anaconda3`), and its subdirectory `%USERPROFILE%\anaconda3\Scripts` and `%USERPROFILE%\anaconda3\Library\bin` to the environmental variable `PATH`. 
+* Install ASE and SeekPath package, `conda  install -c conda-forge  ase seekpath`
+
+### 3.3.1  Build Slab
+* `g2g bulk.cif slab`
+* Give Miller Index (e.g. 1 1 1), number of layers (e.g. 3) and vaccum thickness (e.g. 8)
+* You will get a slab structure in cif format. 
+
+### 3.3.2  High symmetry K-path for vasp 
+* `g2g bulk.cif vaspkp`
+* You will get `PRIM.vasp` and `vasp.kpt` for VASP band structure calculation. 
+
+### 3.3.3  High symmetry K-path for QuantumVITAS (Quantum Espresso)
+* `g2g bulk.cif qekp`
+* Give the number of points to insert between high symmetry K points
+* You will get `XXX_kpt.pw`, copy it to the Geometry and Bands K-path in QuantumVITAS for band structure calculation.
+
+
