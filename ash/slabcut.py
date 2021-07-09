@@ -22,10 +22,9 @@ posbase,posext = os.path.splitext(posname)
 
 if not os.path.isfile(inpos):
     sys.exit(1)   
-if dirname == "":
-    dirname = "."
-    
-outpos = os.path.join(dirname,posbase+'_'+hkl.replace(' ','')+".cif")
+
+outdir = "."
+outpos = os.path.join(outdir,posbase+'_'+hkl.replace(' ','')+".cif")
 inbulk= read(inpos) 
     
 hkllist = hkl.replace("  "," ").split()
