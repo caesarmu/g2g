@@ -4,6 +4,7 @@ import sys
 import os
 import ase 
 from ase.io import read ,write,vasp
+from ase import Atoms
 import spglib 
 import seekpath
 
@@ -26,7 +27,7 @@ outpos = os.path.join(outdir,"Prim.vasp")
 inp = (bulk.cell, bulk.get_scaled_positions(),numbers)
 kpdata = seekpath.getpaths.get_path(inp, with_time_reversal=tr, recipe='hpkot', threshold=1e-07, symprec=1e-05, angle_tolerance=-1.0)
 
-primcell = ase.Atoms(positions=kpdata['primitive_positions'],cell=kpdata['primitive_lattice'],pbc=[True,True,True])
+primcell = Atoms(positions=kpdata['primitive_positions'],cell=kpdata['primitive_lattice'],pbc=[True,True,True])
 primcell.set_atomic_numbers(kpdata['primitive_types'])
 primcell.set_scaled_positions(kpdata['primitive_positions'])
 
@@ -45,4 +46,4 @@ with open(output,'a') as outfile:
 outfile.close()
  
 print('Primitive cell written to Prim.vasp...')
-vasp.write_vasp(outpos,primcell,sort=True,vasp5=True)
+vasp.write_vasp(outpos,primcell,sort=True,direct=True,vasp5=True)
