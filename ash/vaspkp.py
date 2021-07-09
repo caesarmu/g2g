@@ -16,14 +16,13 @@ else:
 dirname,posname = os.path.split(inpos)
 if not os.path.isfile(inpos):
     sys.exit(1)   
-if dirname == "":
-    dirname = "."
+outdir = "."
 
 bulk = read(inpos) 
 numbers = bulk.get_atomic_numbers()
 tr = True
-output = os.path.join(dirname,"vasp.kpt")
-outpos = os.path.join(dirname,"Prim.vasp")
+output = os.path.join(outdir,"vasp.kpt")
+outpos = os.path.join(outdir,"Prim.vasp")
 inp = (bulk.cell, bulk.get_scaled_positions(),numbers)
 kpdata = seekpath.getpaths.get_path(inp, with_time_reversal=tr, recipe='hpkot', threshold=1e-07, symprec=1e-05, angle_tolerance=-1.0)
 
