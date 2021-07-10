@@ -9,19 +9,32 @@ import spglib
 import seekpath
 
 if len(sys.argv) == 1 :
-    inpos = input("Input System for High-symmetry KP: ")
-    ndiv = input("Number of points between high symmetry K points: (e.g., 30): ")
+    print("Example: python qekp.py a.cif/POSCAR [30 [0.001]]")
+    os.system("pause")
+    sys.exit(1)
 elif len(sys.argv) == 2 :
     inpos = sys.argv[1]
     ndiv = input("Number of points between high symmetry K points: (e.g., 30): ")
+    symprec = input("Tolerance for symmetry: (e.g., 0.001): ")
+elif len(sys.argv) == 3 :
+    inpos = sys.argv[1]
+    ndiv = sys.argv[2]
+    symprec = input("Tolerance for symmetry: (e.g., 0.001): ")
 else:
     inpos = sys.argv[1]
     ndiv = sys.argv[2]
+    symprec = sys.argv[3]
  
+if ndiv == "":
+     ndiv = "30"
+if symprec == "":
+     symprec = "0.001"     
+ndiv = int(ndiv)
+symprec = float(symprec)
  
 if not os.path.isfile(inpos):
     sys.exit(1)   
-ndiv = int(ndiv)
+
 
 dirname,posname = os.path.split(inpos)
 posbase,posext = os.path.splitext(posname)
@@ -32,7 +45,7 @@ numbers = bulk.get_atomic_numbers()
 tr = True
 output = os.path.join(outdir,posbase+"_kpt.pw")
 inp = (bulk.cell, bulk.get_scaled_positions(),numbers)
-kpdata = seekpath.getpaths.get_path(inp, with_time_reversal=tr, recipe='hpkot', threshold=1e-07, symprec=1e-05, angle_tolerance=-1.0)
+kpdata = seekpath.getpaths.get_path(inp, with_time_reversal=tr, recipe='hpkot', threshold=1e-07, symprec=symprec, angle_tolerance=-1.0)
 
 primcell = Atoms(positions=kpdata['primitive_positions'],cell=kpdata['primitive_lattice'],pbc=[True,True,True])
 primcell.set_atomic_numbers(kpdata['primitive_types'])
@@ -77,4 +90,4 @@ with open(output,'a') as outfile:
         outfile.write("%16.10f %16.10f %16.10f 1\n" % (hkp[0], hkp[1],hkp[2]))
     outfile.write("\n")
 outfile.close()
-#os.system("pause")
+sys.exit(0)
