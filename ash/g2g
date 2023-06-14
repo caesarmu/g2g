@@ -1,0 +1,99 @@
+#!/bin/sh
+export BinHome==$(cd $(dirname $0) && pwd)
+export PATH=$PATH:$BinHome
+ 
+ingeo=$1
+outgeo=$2
+taskpara=$3
+othertask="$4 $5 $6"
+inext=${ingeo##*.}
+inbase=${ingeo%.*}
+
+if [[ "$#" == 0 || "$1" =~ help ]] ; then 
+    echo "Example: g2g a.vasp b.pw"
+    exit 0
+elif [[ ! -s "$ingeo" ]]  ; then 
+    echo "$ingeo not exist!" 
+    exit 1
+fi
+ 
+ 
+if [[ "$outgeo" =~ slab$ ]] ; then 
+    python  $BinHome\slabcut.py $ingeo
+elif [[ "$outgeo" =~ vaspkp$ ]] ; then 
+    python  $BinHome\vaspkp.py $ingeo
+elif [[ "$outgeo" =~ qepath$ ]] ; then    
+   QVITASHOME=$1
+   export PATH=$PATH:$QVITASHOME\mpi:$QVITASHOME\qe
+elif [[ "$ingeo" =~ gjf$ ]] && [[ -z "$outgeo" || "$outgeo" =~ xyz$ ]] ; then
+   [[ -z "$outgeo" ]] && outgeo=${inbase}.xyz
+   gjf2xyz $ingeo $outgeo
+elif [[ "$ingeo" =~ vasp$ || "$ingeo" =~ POSCA || "$ingeo" =~ CONTCA ]] && [[ -z "$outgeo" || "$outgeo" =~ pw$ ]] ; then 
+   [[ -z "$outgeo" ]] && outgeo=$(basename $ingeo .vasp).pw
+   v2qe $ingeo $outgeo
+elif [[ "$ingeo" =~ out$ || "$ingeo" =~ log.opt$ || "$ingeo" =~ log.scf$ || "$ingeo" =~ pw$ || "$ingeo" =~ in$ ]] ; then 
+   if [[ "$outgeo" =~ xsf$ ]] ; then 
+      qe2xsf $ingeo $outgeo 
+   elif [[ "$outgeo" =~ xyz$ ]] ; then 
+      qe2xyz $ingeo $outgeo ${taskpara}
+   elif [[ "$outgeo" =~ cif$ ]] ; then 
+      qe2xsf $ingeo g2gtmp.xsf 2>/dev/null
+      echo obabel.exe g2gtmp.xsf -O$outgeo
+      obabel.exe g2gtmp.xsf -O$outgeo
+   elif [[ "$outgeo" =~ pw$ ]] ; then    
+      qe2xsf $ingeo g2gtmp.xsf 2>/dev/null
+      obabel.exe g2gtmp.xsf -ovasp -Og2gtmp.vasp
+      v2qe g2gtmp.vasp $outgeo  
+   elif [[ "$outgeo" =~ vasp$ ]] ; then  
+      qe2xsf $ingeo g2gtmp.xsf 2>/dev/null
+     
+      obabel.exe g2gtmp.xsf -ovasp -O$outgeo
+   else
+      qe2xsf $ingeo ${inbase}.xsf 
+   fi
+elif [[ "$ingeo" =~ hzw$ ]] ; then 
+   if [[ "$outgeo" =~ xsf$ ]] ; then 
+       hzw2xsf $ingeo $outgeo  
+   elif [[ "$outgeo" =~ cif$ ]] ; then  
+       hzw2xsf $ingeo   g2gtmp.xsf
+       obabel.exe g2gtmp.xsf -O$outgeo
+   elif [[ "$outgeo" =~ vasp$ ]] ; then  
+       hzw2xsf $ingeo   g2gtmp.xsf
+       obabel.exe g2gtmp.xsf -ovasp -O$outgeo
+   else
+       hzw2xsf $ingeo   g2gtmp.xsf
+       obabel.exe g2gtmp.xsf -ovasp -O${inbase}.vasp
+   fi
+elif [[ "$ingeo" =~ cif$ || "$ingeo" =~ pdb$ ]] ; then  
+   if [[ "$outgeo" =~ pw$ ]] ; then
+       obabel.exe $ingeo -ovasp -Og2gtmp.vasp  $addpara
+       v2qe g2gtmp.vasp $outgeo
+   elif [[ "$outgeo" =~ vasp$ ]] ; then
+       obabel.exe $ingeo -O$outgeo  $addpara  
+   elif [[ "$outgeo" =~ cif$ ]] ; then 
+       obabel.exe $ingeo  -ocif -O${inbase}_fill.cif  --fillUC strict
+   else
+       obabel.exe $ingeo -ovasp -Og2gtmp.vasp 
+       v2qe g2gtmp.vasp  ${inbase}.pw
+   fi
+elif [[ "$ingeo" =~ axsf$ ]] ; then 
+   if [[ "$outgeo" =~ xsf$ ]] ; then
+       vib2xsf $ingeo ${taskpara} ${otherpara}
+       mv qe2vib${taskpara}x*.xsf $outgeo 
+   else
+       xsf2xyz $ingeo  $outgeo
+   fi
+elif [[ "$outgeo" =~ pw$ ]] ; then  
+   obabel.exe $ingeo -Og2gtmp.vasp
+   v2qe g2gtmp.vasp $outgeo
+elif [[ "$outgeo" =~ xsf$ ]] ; then
+   obabel.exe $ingeo -Og2gtmp.vasp
+   v2qe g2gtmp.vasp g2gtmp.pw 
+   qe2xsf g2gtmp.pw $outgeo
+elif [[ "$outgeo" =~ vasp$|POSCA|CONTCA ]] ; then
+   obabel.exe $ingeo -ovasp -O$outgeo
+else
+   obabel.exe $ingeo -O$outgeo
+fi    
+#rm -f g2gtmp.* qe2vib*x*.xsf 2>/dev/null 
+exit 0
