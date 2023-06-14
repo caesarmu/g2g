@@ -5,9 +5,10 @@
 * [openbabel](https://github.com/openbabel/openbabel) does not support output in **pwscf** format, which is needed by [QuantumVITAS](https://www.quantumvitas.org/ "QuantumVITAS"), a Windows GUI for [Quantum Espresso](https://www.quantum-espresso.org/ "Quantum Espresso"). The content of ouputfile *.pw will be sent to clipboard on Windows 7/10, to be used in [QuantumVITAS](https://www.quantumvitas.org/ "QuantumVITAS").  
 * [openbabel](https://github.com/openbabel/openbabel) does not support output in **xsf** format. 
 
-## 2 Requirements
-* Install [openbabel](https://github.com/openbabel/openbabel).
-* Double click `add_pwd.vbs` to add current directory to `PATH` of Windows.
+## 2 Installation
+* Requirements: Install [Openbabel](https://github.com/openbabel/openbabel) or [Avogadro](https://github.com/OpenChemistry/avogadrolibs), and make sure their `bin` directory are in the `PATH` of your system. If not, copy `pwd2path.vbs` to the `bin` directory and double click it.
+* Double click `g2g_reg.bat` to initialize the environment variables.
+* In your work directory, right click the background of the directory, select `ASHCMD`, then run g2g commands. 
 
 ## 3 Usage
 ### 3.1 Quantum Espresso Related 
@@ -49,5 +50,4 @@
 * `g2g bulk.cif qekp`
 * Give the number of points to insert between high symmetry K points
 * You will get `XXX_kpt.pw`, copy it to the Geometry and Bands K-path in QuantumVITAS for band structure calculation.
-
 
