@@ -38,15 +38,14 @@ elif [[ "$ingeo" =~ out$ || "$ingeo" =~ log.opt$ || "$ingeo" =~ log.scf$ || "$in
       qe2xyz $ingeo $outgeo ${taskpara}
    elif [[ "$outgeo" =~ cif$ ]] ; then 
       qe2xsf $ingeo g2gtmp.xsf 2>/dev/null
-      echo obabel.exe g2gtmp.xsf -O$outgeo
-      obabel.exe g2gtmp.xsf -O$outgeo
+      obabel.exe g2gtmp.xsf -Og2gtmp.tmp.vasp
+      obabel.exe g2gtmp.tmp.vasp -O$outgeo
    elif [[ "$outgeo" =~ pw$ ]] ; then    
       qe2xsf $ingeo g2gtmp.xsf 2>/dev/null
       obabel.exe g2gtmp.xsf -ovasp -Og2gtmp.vasp
       v2qe g2gtmp.vasp $outgeo  
-   elif [[ "$outgeo" =~ vasp$ ]] ; then  
+   elif [[ "$outgeo" =~ vasp$ || "$outgeo" =~ POSCA  ]] ; then  
       qe2xsf $ingeo g2gtmp.xsf 2>/dev/null
-     
       obabel.exe g2gtmp.xsf -ovasp -O$outgeo
    else
       qe2xsf $ingeo ${inbase}.xsf 
@@ -56,7 +55,8 @@ elif [[ "$ingeo" =~ hzw$ ]] ; then
        hzw2xsf $ingeo $outgeo  
    elif [[ "$outgeo" =~ cif$ ]] ; then  
        hzw2xsf $ingeo   g2gtmp.xsf
-       obabel.exe g2gtmp.xsf -O$outgeo
+       obabel.exe g2gtmp.xsf -Og2gtmp.tmp.cif
+       obabel.exe g2gtmp.tmp.cif -O$outgeo
    elif [[ "$outgeo" =~ vasp$ ]] ; then  
        hzw2xsf $ingeo   g2gtmp.xsf
        obabel.exe g2gtmp.xsf -ovasp -O$outgeo
@@ -90,10 +90,10 @@ elif [[ "$outgeo" =~ xsf$ ]] ; then
    obabel.exe $ingeo -Og2gtmp.vasp
    v2qe g2gtmp.vasp g2gtmp.pw 
    qe2xsf g2gtmp.pw $outgeo
-elif [[ "$outgeo" =~ vasp$|POSCA|CONTCA ]] ; then
+elif [[ "$outgeo" =~ vasp$ || "$outgeo" =~ POSCA || "$outgeo" =~ CONTCA ]] ; then
    obabel.exe $ingeo -ovasp -O$outgeo
 else
    obabel.exe $ingeo -O$outgeo
 fi    
-#rm -f g2gtmp.* qe2vib*x*.xsf 2>/dev/null 
+rm -f g2gtmp.* qe2vib*x*.xsf 2>/dev/null 
 exit 0
