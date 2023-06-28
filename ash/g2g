@@ -39,7 +39,11 @@ elif [[ "$ingeo" =~ out$ || "$ingeo" =~ ^espresso.log || "$ingeo" =~ pw$ || "$in
    elif [[ "$outgeo" =~ cif$ ]] ; then 
       qe2xsf $ingeo g2gtmp.xsf 2>/dev/null
       obabel.exe g2gtmp.xsf -Og2gtmp.tmp.vasp
-      obabel.exe g2gtmp.tmp.vasp -O$outgeo
+      obabel.exe g2gtmp.tmp.vasp -O$outgeo 2>/dev/null
+       sed -i  "/_symmetry_equiv_pos_as_xyz/,/loop_/ d" ${outgeo}
+       sed -i "s/^ *_space_group_name_H-M_alt.*$/_space_group_name_H-M_alt 'P 1'/g" ${outgeo}
+       sed -i "s/^ *_space_group_name_Hall.*$/_space_group_name_Hall 'P 1'/g" ${outgeo}
+       sed -i "/loop_/iloop_\n   _symmetry_equiv_pos_as_xyz\n    x,y,z\n" ${outgeo}
    elif [[ "$outgeo" =~ pw$ ]] ; then    
       qe2xsf $ingeo g2gtmp.xsf 2>/dev/null
       obabel.exe g2gtmp.xsf -ovasp -Og2gtmp.vasp
@@ -56,7 +60,11 @@ elif [[ "$ingeo" =~ hzw$ ]] ; then
    elif [[ "$outgeo" =~ cif$ ]] ; then  
        hzw2xsf $ingeo   g2gtmp.xsf
        obabel.exe g2gtmp.xsf -Og2gtmp.tmp.cif
-       obabel.exe g2gtmp.tmp.cif -O$outgeo
+       obabel.exe g2gtmp.tmp.cif -O$outgeo 2>/dev/null
+       sed -i "/_symmetry_equiv_pos_as_xyz/,/loop_/ d" ${outgeo}
+       sed -i "s/^ *_space_group_name_H-M_alt.*$/_space_group_name_H-M_alt 'P 1'/g" ${outgeo}
+       sed -i "s/^ *_space_group_name_Hall.*$/_space_group_name_Hall 'P 1'/g" ${outgeo}
+       sed -i "/loop_/iloop_\n   _symmetry_equiv_pos_as_xyz\n    x,y,z\n" ${outgeo}
    elif [[ "$outgeo" =~ vasp$ || "$outgeo" =~ POSCA || "$outgeo" =~ CONTCA ]] ; then  
        hzw2xsf $ingeo   g2gtmp.xsf
        obabel.exe g2gtmp.xsf -ovasp -O$outgeo
