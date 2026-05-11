@@ -6,9 +6,9 @@
 * [openbabel](https://github.com/openbabel/openbabel) does not support output in **xsf** format. 
 
 ## 2 Installation
-* Requirements: Install [Openbabel](https://github.com/openbabel/openbabel) or [Avogadro](https://github.com/OpenChemistry/avogadrolibs), and make sure their `bin` directory are in the `PATH` of your system. If not, copy `pwd2path.vbs` to the `bin` directory and double click it.
-* Double click `g2g_reg.bat` to initialize the environment variables.
-* In your work directory, right click the background of the directory, select `ASHCMD`, then run g2g commands. 
+* Unzip `g2g.0.3.zip`, enter `g2g.0.3`, then click `pwd2path.vbs` to add `g2g.0.3` to `PATH`.
+* Requirements: Install [Avogadro2](https://github.com/OpenChemistry/avogadrolibs), and make sure their `bin` directory are in the `PATH` of your system. If not, copy `pwd2path.vbs` to the `bin` directory and double click it.
+* In your working directory, open the MS-DOS prompt, and run `g2g_init`, then run `g2g` commands. 
 
 ## 3 Usage
 ### 3.1 Quantum Espresso Related 
